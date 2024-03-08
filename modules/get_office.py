@@ -11,6 +11,7 @@ def getAllCodigoCiudad():
     return codigoCiudad 
 
 
+# Funcion para filtrar informacion de oficinas por pais
 def getAllPhonesCity(pais):
     phonesCity = []
     for val in of.oficina:
