@@ -1,0 +1,39 @@
+{
+    "gama_productos":[
+        {
+            "gama": "Herbaceas",
+            "descripcion_texto": "Plantas para jardin decorativas",
+            "descripcion_html": null,
+            "imagen": null,
+            "id": 1
+        },
+        {
+            "gama": "Herramientas",
+            "descripcion_texto": "Herramientas para todo tipo de acci\u00f3n",
+            "descripcion_html": null,
+            "imagen": null,
+            "id": 2
+        },
+        {
+            "gama": "Arom\u00e1ticas",
+            "descripcion_texto": "Plantas arom\u00e1ticas",
+            "descripcion_html": null,
+            "imagen": null,
+            "id": 3
+        },
+        {
+            "gama": "Frutales",
+            "descripcion_texto": "\u00c1rboles peque\u00f1os de producci\u00f3n frutal",
+            "descripcion_html": null,
+            "imagen": null,
+            "id": 4
+        },
+        {
+            "gama": "Ornamentales",
+            "descripcion_texto": "Plantas vistosas para la decoraci\u00f3n del jard\u00edn",
+            "descripcion_html": null,
+            "imagen": null,
+            "id": 5
+        }
+    ]
+}
