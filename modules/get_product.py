@@ -2,21 +2,30 @@ import os
 import requests
 from tabulate import tabulate
 
-
+BASE_URL = "http://154.38.171.54:5008"
 
 
 def getAllData():
-    peticion = requests.get("http://172.16.106.152:5432")
+    peticion = requests.get(f"{BASE_URL}/productos")
     data = peticion.json()
     return data
 
+def getProductId(codigo):
+    for val in getAllData():
+        if(val.get("id") == codigo):
+            return [val]
+        
+def getProductCode(codigo):
+    for val in getAllData():
+        if(val.get("codigo_producto") == codigo):
+            return [val]
 
 
 # Funcion para filtrar producto por gama, stock y precio de venta de mayor a menor
 def getAllGamaStockPrice(gama, stock):
     condiciones = []
     for val in getAllData():
-        if(val.get("gama") == gama and val.get("cantidad_en_stock") >= stock):
+        if(val.get("gama") == gama and val.get("cantidadEnStock") >= stock):
             condiciones.append(val)
     
     def priceOrder(val):
@@ -32,7 +41,7 @@ def getAllGamaStockPrice(gama, stock):
                 "Dimensiones": val.get("dimensiones"),
                 "Proveedor": val.get("proveedor"),
                 "Descripcion": val.get("descripcion"),
-                "Stock": val.get("cantidad_en_stock"),
+                "Stock": val.get("cantidadEnStock"),
                 "Precio venta": val.get("precio_venta"),
                 "Precio base": val.get("precio_proveedor"),
             }
@@ -65,6 +74,8 @@ ______                            _               _        ______               
             gama = input("Ingrese la gama del producto: ")
             stock = int(input("Ingrese cantidad minima en stock a revisar: "))
             print(tabulate(getAllGamaStockPrice(gama, stock),headers= "keys", tablefmt="rounded_grid"))
+            input("Presion cualquier tecla para volver al menu....")
         elif(opcion == 0):
             break
+
 
