@@ -161,9 +161,9 @@ ___  ___            _  _   __  _                     ______         _
                                                                                                                                                                                   
 
         0. Atras 
-        1. Guardar un producto nuevo
-        2. Modificar un producto
-        3. Eliminar un producto
+        1. Guardar una oficina nueva
+        2. Modificar una oficina
+        3. Eliminar una oficina
       
 """)
         opcion = int(input("Seleccione una de las opciones: "))
