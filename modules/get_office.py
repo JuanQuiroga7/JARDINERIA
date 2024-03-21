@@ -10,6 +10,17 @@ def getAllData():
     data = peticion.json()
     return data
 
+def getOfficeId(codigo):
+    for val in getAllData():
+        if(val.get("id") == codigo):
+            return [val]
+        
+def getOfficeCode(codigo):
+    for val in getAllData():
+        if(val.get("codigo_oficina") == codigo):
+            return [val]
+        
+
 # Funcion para filtrar oficinas por ciudad 
 def getAllCodigoCiudad():
     codigoCiudad = []
