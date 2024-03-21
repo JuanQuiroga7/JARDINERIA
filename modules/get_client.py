@@ -10,6 +10,16 @@ def getAllClient():
     data = peticion.json()
     return data
 
+def getClientId(codigo):
+    for val in getAllClient():
+        if(val.get("id") == codigo):
+            return [val]
+        
+def getClientCode(codigo):
+    for val in getAllClient():
+        if(val.get("codigo_cliente") == codigo):
+            return [val]
+
 
 
 # Funcion para filtrar cliente por nombre
