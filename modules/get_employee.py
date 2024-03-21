@@ -10,6 +10,16 @@ def getAllData():
     data = peticion.json()
     return data
 
+def getEmployeeId(codigo):
+    for val in getAllData():
+        if(val.get("id") == codigo):
+            return [val]
+        
+def getEmployeeCode(codigo):
+    for val in getAllData():
+        if(val.get("codigo_empleado") == codigo):
+            return [val]
+
 
 # Funcion para filtrar informacion de empleados de jefe (X)
 def getAllNameEmailEmployees(codigo):

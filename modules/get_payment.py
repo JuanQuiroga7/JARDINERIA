@@ -10,6 +10,17 @@ def getAllData():
     data = peticion.json()
     return data
 
+def getPaymentId(codigo):
+    for val in getAllData():
+        if(val.get("id") == codigo):
+            return [val]
+        
+def getPaymentCode(codigo):
+    for val in getAllData():
+        if(val.get("codigo_cliente") == codigo):
+            return [val]
+        
+
 # Funcion para filtrar pagos por metodo, año y organizar el total del pago de mayor a menor
 def getAllPaymentYear(metodo, year):
     paymentYear = []

@@ -170,10 +170,10 @@ ___  ___            _  _   __  _                     ______         _
         if(opcion == 1):
             print(tabulate(postOffice(),headers= "keys", tablefmt="rounded_grid"))
         if (opcion == 2):
-            id = input("Ingrese el ID del producto que desea modificar: ")
+            id = input("Ingrese el ID de la oficina que desea modificar: ")
             print(tabulate(EditOffice(id), headers="keys", tablefmt="rounded_grid"))
         if(opcion == 3):
-            id = input("Ingrese el ID del producto que desea eliminar: ")
+            id = input("Ingrese el ID de la oficina que desea eliminar: ")
             print(tabulate(deleteOffice(id),headers= "keys", tablefmt="rounded_grid"))
         elif(opcion == 0):
             break

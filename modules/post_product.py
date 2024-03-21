@@ -59,6 +59,14 @@ def postProduct():
                 else:
                     raise Exception("El nombre del proveedor no cumple con los estandares")
                 
+            # Validar que la descripcion cumpla con la estructura adecuada
+            if(not producto.get("descripcion")):
+                descripciones = input("Ingrese la descripcion del producto: ")
+                if(re.match(r'^[A-Z][a-zA-Z0-9\s]+$', descripciones) is not None):
+                    producto["descripcion"] = descripciones
+                else:
+                    raise Exception("La descripcion no cumple con los estandares")
+                
             # Validar que la cantidad en stock cumpla con la estructura adecuada
             if(not producto.get("cantidadEnStock")):
                 stock = input("Ingrese la cantidad en stock del producto: ")
@@ -72,8 +80,8 @@ def postProduct():
             if(not producto.get("precio_venta")):
                 venta = input("Ingrese el precio de venta del producto: ")
                 if(re.match(r'^\d+$', venta) is not None):
-                    producto["precio_venta"] = venta
                     venta = int(venta)
+                    producto["precio_venta"] = venta
                 else:
                     raise Exception("El valor ingresado no cumple con los estandares")
                 
@@ -81,8 +89,8 @@ def postProduct():
             if(not producto.get("precio_proveedor")):
                 precioProv = input("Ingrese el precio de proveedor del producto: ")
                 if(re.match(r'^\d+$', precioProv) is not None):
-                    producto["precio_proveedor"] = precioProv
                     precioProv = int(precioProv)
+                    producto["precio_proveedor"] = precioProv
                     break
                 else:
                     raise Exception("El valor ingresado no cumple con los estandares")
@@ -96,6 +104,7 @@ def postProduct():
     res = peticion.json()
     res["Mensaje"] = "Producto Guardado"
     return [res]
+
 
 
 # Funcion para eliminar un producto
@@ -119,6 +128,9 @@ def deleteProduct(id):
         }
 
 
+
+
+# Funcion para modificar un producto
 def EditProduct(id):
     data = gP.getProductId(id)
     if data is None:
@@ -126,23 +138,34 @@ def EditProduct(id):
         return    
     
     while True:
+        os.system("clear")
+        
         print(tabulate(data, headers="keys", tablefmt="pretty"))
-        modificacion = input("Ingrese el campo que desea modificar (Escriba listo para finalizar): ")
+        keys = list(data[0].keys())
+        for i, key in enumerate(keys, start=1):
+            print(f"\n{i}. {key}")
+        modificacion = input("\nIngrese el numero del campo que desea modificar (Escriba listo para finalizar): ")
+        if modificacion == "1":
+            print("\nNo se puede modificar el ID")
+            continue
         if modificacion.lower() == "listo":
             break
-        nuevo_valor = input(f"Ingrese el nuevo valor para {modificacion}: ")
+        modificacion = keys[int(modificacion) - 1]
+        nuevo_valor = input(f"\nIngrese el nuevo valor para {modificacion}: ")
+        if modificacion == "cantidadEnStock" or modificacion == "precio_venta" or modificacion == "precio_proveedor":
+            nuevo_valor = int(nuevo_valor)
         if modificacion in data[0]:
             data[0][modificacion] = nuevo_valor
         else:
-            print(f"El campo {modificacion} no existe")
+            print(f"\nEl campo {modificacion} no existe")
 
-    peticion = requests.put(f"{BASE_URL}/productos/{id}", data=json.dumps(data))
-    return peticion.json()
+    peticion = requests.put(f"{BASE_URL}/productos/{id}", data=json.dumps(data[0]))
+    res = peticion.json()
+    res["Mensaje"] = "Producto Modificado"
+    return [res]
     
     
     
-
-
 
 
 def menu():

@@ -227,10 +227,10 @@ ___  ___            _  _   __  _                     ______         _
         if(opcion == 1):
             print(tabulate(postClient(),headers= "keys", tablefmt="rounded_grid"))
         if (opcion == 2):
-            id = input("Ingrese el ID del producto que desea modificar: ")
+            id = input("Ingrese el ID del cliente que desea modificar: ")
             print(tabulate(EditClient(id), headers="keys", tablefmt="rounded_grid"))
         if(opcion == 3):
-            id = input("Ingrese el ID del producto que desea eliminar: ")
+            id = input("Ingrese el ID del cliente que desea eliminar: ")
             print(tabulate(deleteClient(id),headers= "keys", tablefmt="rounded_grid"))
         elif(opcion == 0):
             break

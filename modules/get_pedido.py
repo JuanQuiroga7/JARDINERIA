@@ -11,6 +11,15 @@ def getAllData():
     data = peticion.json()
     return data
 
+def getPedidoId(codigo):
+    for val in getAllData():
+        if(val.get("id") == codigo):
+            return [val]
+        
+def getPedidoCode(codigo):
+    for val in getAllData():
+        if(val.get("codigo_pedido") == codigo):
+            return [val]
 
 
 
